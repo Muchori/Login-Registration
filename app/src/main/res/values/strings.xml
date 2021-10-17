@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Login-Registration</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="register">Sign up</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="login">Log In</string>
+    <string name="sign_in_with_google">Continue with google</string>
+    <string name="continue_in_with_facebook">Continue with facebook</string>
+</resources>
