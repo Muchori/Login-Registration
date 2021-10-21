@@ -1,22 +1,22 @@
 package com.joseph.muchori.login_registration.di
 
-import com.joseph.muchori.login_registration.data.network.RegistrationApi
-import com.joseph.muchori.login_registration.utils.Constants.Companion.BASE_URL
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
+import com.google.gson.GsonBuilder
 
-@Module
-@InstallIn(SingletonComponent::class)
+import okhttp3.OkHttpClient
+import retrofit2.converter.gson.GsonConverterFactory
+import java.security.KeyManagementException
+import java.security.NoSuchAlgorithmException
+import java.util.concurrent.TimeUnit
+import okhttp3.logging.HttpLoggingInterceptor
+
+
 object NetworkModule {
 
-    @Singleton
+    private var mClient: OkHttpClient? = null
+    private var mGsonConverter: GsonConverterFactory? = null
+
+
+    /**@Singleton
     @Provides
     fun provideHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
@@ -41,11 +41,56 @@ object NetworkModule {
             .client(okHttpClient)
             .addConverterFactory(gsonConverterFactory)
             .build()
+            .create(SignupLoginApi::class.java)
     }
 
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit): RegistrationApi {
-        return retrofit.create(RegistrationApi::class.java)
-    }
+    fun provideApiService(retrofit: Retrofit): SignupLoginApi {
+        return retrofit.create(SignupLoginApi::class.java)
+    }*/
+
+    val client: OkHttpClient
+        @Throws(NoSuchAlgorithmException::class, KeyManagementException::class)
+        get() {
+            if (mClient == null) {
+                val interceptor = HttpLoggingInterceptor()
+                interceptor.level = HttpLoggingInterceptor.Level.BODY
+
+                val httpBuilder = OkHttpClient.Builder()
+                httpBuilder
+                    .connectTimeout(120, TimeUnit.SECONDS)
+                    .readTimeout(120, TimeUnit.SECONDS)
+                    .addInterceptor(interceptor)  /// show all JSON in logCat
+                    .addInterceptor { chain ->
+                        val original = chain.request()
+
+                        val requestBuilder = original.newBuilder()
+//                        .addHeader("Authorization", AUTH)
+                            .addHeader("Content-Type", "application/json")
+//                            .method(original.method(), original.body())
+
+                        val request = requestBuilder.build()
+                        chain.proceed(request)
+                    }
+                mClient = httpBuilder.build()
+
+            }
+            return mClient!!
+        }
+
+
+    val gsonConverter: GsonConverterFactory
+        get() {
+            if (mGsonConverter == null) {
+                mGsonConverter = GsonConverterFactory
+                    .create(
+                        GsonBuilder()
+                            .setLenient()
+                            .disableHtmlEscaping()
+                            .create()
+                    )
+            }
+            return mGsonConverter!!
+        }
 }

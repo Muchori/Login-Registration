@@ -3,7 +3,7 @@ package com.joseph.muchori.login_registration.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Registration(
+data class SignUpRequestItem(
     @SerializedName("email")
     val email: String,
     @SerializedName("first_name")
@@ -12,6 +12,6 @@ data class Registration(
     val lastName: String,
     @SerializedName("password")
     val password: String,
-    @SerializedName("phone_number")
-    val phoneNumber: Int
+    @SerializedName("phone")
+    val phone: String
 )

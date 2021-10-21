@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.joseph.muchori.login_registration.R
+import com.joseph.muchori.login_registration.di.NetworkModule
 import kotlinx.android.synthetic.main.fragment_sign_up.view.*
 
 
@@ -18,6 +19,10 @@ class SignUpFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val mView =  inflater.inflate(R.layout.fragment_sign_up, container, false)
+
+
+
+        NetworkModule.provideRetrofitInstance()
 
         return mView
     }
