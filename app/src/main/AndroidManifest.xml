@@ -11,11 +11,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LoginRegistration">
+        android:theme="@style/Theme.LoginRegistration"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.ProfileActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.MainActivity"
-            android:theme="@style/MainActivityStyle"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/MainActivityStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
