@@ -39,12 +39,12 @@ class SignUpFragment : Fragment(),  View.OnClickListener {
         // Inflate the layout for this fragment
         val mView =  inflater.inflate(R.layout.fragment_sign_up, container, false)
 
-        firstName = mView!!.findViewById(R.id.first_nameInput) as TextInputEditText
-        lastName = mView!!.findViewById(R.id.last_name_textInput) as TextInputEditText
-        email = mView!!.findViewById(R.id.email_textInput) as TextInputEditText
-        phoneNumber = mView!!.findViewById(R.id.phoneNumber_textInput) as TextInputEditText
-        password = mView!!.findViewById(R.id.password_textInput) as TextInputEditText
-        navigateSignup = mView!!.findViewById(R.id.navigate_signup) as Button
+        firstName = mView.findViewById(R.id.first_nameInput) as TextInputEditText
+        lastName = mView.findViewById(R.id.last_name_textInput) as TextInputEditText
+        email = mView.findViewById(R.id.email_textInput) as TextInputEditText
+        phoneNumber = mView.findViewById(R.id.phoneNumber_textInput) as TextInputEditText
+        password = mView.findViewById(R.id.password_textInput) as TextInputEditText
+        navigateSignup = mView.findViewById(R.id.button_signup) as Button
 
         navigateSignup.setOnClickListener(this)
 
@@ -55,7 +55,7 @@ class SignUpFragment : Fragment(),  View.OnClickListener {
 
     override fun onClick(view: View?) {
         when (view?.id){
-            R.id.navigate_signup -> {
+            R.id.button_signup -> {
                 if (validation()){
                     val json = JSONObject()
                     json.put("email", email.text.toString())
@@ -96,10 +96,10 @@ class SignUpFragment : Fragment(),  View.OnClickListener {
             var value = true
 
             val eMail = email_textInput.text.toString().trim()
-            val passWord = password_textInput.text.toString().trim()
             val firstName = first_nameInput.text.toString().trim()
             val lastName = last_name_textInput.text.toString().trim()
             val phoneNumber = phoneNumber_textInput.text.toString().trim()
+            val passWord = password_textInput.text.toString().trim()
 
             if (eMail.isEmpty()) {
                 email_textInput.error = "Email required"
