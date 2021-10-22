@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.joseph.muchori.login_registration.R
 import com.joseph.muchori.login_registration.di.SignupLoginApiService
@@ -39,12 +40,12 @@ class SignUpFragment : Fragment(),  View.OnClickListener {
         // Inflate the layout for this fragment
         val mView =  inflater.inflate(R.layout.fragment_sign_up, container, false)
 
-        firstName = mView!!.findViewById(R.id.first_nameInput) as TextInputEditText
-        lastName = mView!!.findViewById(R.id.last_name_textInput) as TextInputEditText
-        email = mView!!.findViewById(R.id.email_textInput) as TextInputEditText
-        phoneNumber = mView!!.findViewById(R.id.phoneNumber_textInput) as TextInputEditText
-        password = mView!!.findViewById(R.id.password_textInput) as TextInputEditText
-        navigateSignup = mView!!.findViewById(R.id.navigate_signup) as Button
+        firstName = mView.findViewById(R.id.first_nameInput) as TextInputEditText
+        lastName = mView.findViewById(R.id.last_name_textInput) as TextInputEditText
+        email = mView.findViewById(R.id.email_textInput) as TextInputEditText
+        phoneNumber = mView.findViewById(R.id.phoneNumber_textInput) as TextInputEditText
+        password = mView.findViewById(R.id.password_textInput) as TextInputEditText
+        navigateSignup = mView.findViewById(R.id.button_signup) as Button
 
         navigateSignup.setOnClickListener(this)
 
@@ -55,13 +56,13 @@ class SignUpFragment : Fragment(),  View.OnClickListener {
 
     override fun onClick(view: View?) {
         when (view?.id){
-            R.id.navigate_signup -> {
+            R.id.button_signup -> {
                 if (validation()){
                     val json = JSONObject()
                     json.put("email", email.text.toString())
                     json.put("first_name", firstName.text.toString())
                     json.put("last_name", lastName.text.toString())
-                    json.put("phone_number", phoneNumber.text.toString())
+                    json.put("phone", phoneNumber.text.toString())
                     json.put("password", password.text.toString())
                 }
 
@@ -75,12 +76,15 @@ class SignUpFragment : Fragment(),  View.OnClickListener {
                     override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
                         Log.d("Response::::", response.body().toString())
                         val loginResponse :  SignUpResponse = response.body()!!
-                        if (loginResponse.status){
-                            startActivity(Intent(activity?.applicationContext, ProfileActivity::class.java))
+
+                        findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
+                        /**if (loginResponse.status){
+                            findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
+                            startActivity(Intent(activity, ProfileActivity::class.java))
                             activity?.finish()
                         }else{
-                            Toast.makeText(activity?.applicationContext, response.body()!!.message, Toast.LENGTH_LONG).show()
-                        }
+                            Toast.makeText(activity, response.body()!!.message, Toast.LENGTH_LONG).show()
+                        }*/
                     }
 
                     override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
@@ -96,14 +100,15 @@ class SignUpFragment : Fragment(),  View.OnClickListener {
             var value = true
 
             val eMail = email_textInput.text.toString().trim()
-            val passWord = password_textInput.text.toString().trim()
             val firstName = first_nameInput.text.toString().trim()
             val lastName = last_name_textInput.text.toString().trim()
             val phoneNumber = phoneNumber_textInput.text.toString().trim()
+            val passWord = password_textInput.text.toString().trim()
 
             if (eMail.isEmpty()) {
-                email_textInput.error = "Email required"
-                email_textInput.requestFocus()
+                /*email_textInput.error = "Email required"*/
+                Toast.makeText(activity, "Email required", Toast.LENGTH_SHORT).show()
+                /*email_textInput.requestFocus()*/
                 value = false
             }
 

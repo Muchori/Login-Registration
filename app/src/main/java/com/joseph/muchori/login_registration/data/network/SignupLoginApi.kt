@@ -11,16 +11,14 @@ import retrofit2.http.POST
 
 interface SignupLoginApi {
 
-
-    @FormUrlEncoded
-    @POST("/register")
+    @POST("register")
     fun userRegister(
         @Body signUpRequest: SignUpRequest
     ):Call<SignUpResponse>
 
-    @FormUrlEncoded
-    @POST("/login")
+    @POST("login")
     fun userLogin(
         @Body signInRequest: SignInRequest
     ):Call<SignInResponse>
+
 }

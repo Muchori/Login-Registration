@@ -127,7 +127,7 @@
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
+    <!--<com.google.android.material.textfield.TextInputLayout
         android:id="@+id/confirm_password_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
@@ -136,6 +136,7 @@
         android:baselineAligned="false"
         android:hint="Confirm Password"
         android:textColorHint="@android:color/darker_gray"
+        android:visibility="invisible"
         app:boxStrokeColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/password_layout"
         app:layout_constraintStart_toStartOf="@+id/password_layout"
@@ -149,7 +150,7 @@
             android:inputType="textPassword"
             android:textColor="@color/black"
             android:textSize="14sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>-->
 
     <Button
         android:id="@+id/button_signup"
@@ -163,10 +164,10 @@
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/confirm_password_layout"
+        app:layout_constraintEnd_toEndOf="@+id/password_layout"
         app:layout_constraintHorizontal_bias="0.552"
-        app:layout_constraintStart_toStartOf="@+id/confirm_password_layout"
-        app:layout_constraintTop_toBottomOf="@+id/confirm_password_layout" />
+        app:layout_constraintStart_toStartOf="@+id/password_layout"
+        app:layout_constraintTop_toBottomOf="@+id/password_layout" />
 
     <TextView
         android:id="@+id/textView"
