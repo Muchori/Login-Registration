@@ -13,6 +13,10 @@
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_profileActivity"
+            app:destination="@id/profileActivity" />
+
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -35,4 +39,9 @@
             android:id="@+id/action_splashScreenFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
     </fragment>
+    <activity
+        android:id="@+id/profileActivity"
+        android:name="com.joseph.muchori.login_registration.ui.ProfileActivity"
+        android:label="activity_profile"
+        tools:layout="@layout/activity_profile" />
 </navigation>
