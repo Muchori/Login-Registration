@@ -22,7 +22,6 @@ jobs:
       - name: Danger Checks
         run: |
           gem install bundler
-          gem update bundler
           bundle install
           bundle exec danger
 
