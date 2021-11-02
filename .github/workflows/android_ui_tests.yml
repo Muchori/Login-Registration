@@ -1,10 +1,10 @@
-name: Android UI Tests
+name: Android UI Build
 
 on: pull_request
 
 jobs:
   android-test:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -12,10 +12,13 @@ jobs:
       - name: Set Up JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 1.11
+         java-version: 1.11
+
+      - name: Build Project
+        run: ./gradlew assemble
 
       - name: Run Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 29
-          script: ./gradlew app:connectedCheck
+         api-level: 29
+         script: ./gradlew app:connectedCheck
