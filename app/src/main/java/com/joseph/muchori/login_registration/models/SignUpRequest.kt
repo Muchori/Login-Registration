@@ -10,7 +10,7 @@ data class SignUpRequest(
     val firstName: String,
     @SerializedName("last_name")
     val lastName: String,
-    @SerializedName("phone_number")
+    @SerializedName("phone")
     val phoneNumber: String,
     @SerializedName("password")
     val password: String

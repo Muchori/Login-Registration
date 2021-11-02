@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.joseph.muchori.login_registration.R
 import com.joseph.muchori.login_registration.di.SignupLoginApiService
@@ -61,7 +62,7 @@ class SignUpFragment : Fragment(),  View.OnClickListener {
                     json.put("email", email.text.toString())
                     json.put("first_name", firstName.text.toString())
                     json.put("last_name", lastName.text.toString())
-                    json.put("phone_number", phoneNumber.text.toString())
+                    json.put("phone", phoneNumber.text.toString())
                     json.put("password", password.text.toString())
                 }
 
@@ -75,12 +76,15 @@ class SignUpFragment : Fragment(),  View.OnClickListener {
                     override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
                         Log.d("Response::::", response.body().toString())
                         val loginResponse :  SignUpResponse = response.body()!!
-                        if (loginResponse.status){
-                            startActivity(Intent(activity?.applicationContext, ProfileActivity::class.java))
+
+                        findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
+                        /**if (loginResponse.status){
+                            findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
+                            startActivity(Intent(activity, ProfileActivity::class.java))
                             activity?.finish()
                         }else{
-                            Toast.makeText(activity?.applicationContext, response.body()!!.message, Toast.LENGTH_LONG).show()
-                        }
+                            Toast.makeText(activity, response.body()!!.message, Toast.LENGTH_LONG).show()
+                        }*/
                     }
 
                     override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
@@ -102,8 +106,9 @@ class SignUpFragment : Fragment(),  View.OnClickListener {
             val passWord = password_textInput.text.toString().trim()
 
             if (eMail.isEmpty()) {
-                email_textInput.error = "Email required"
-                email_textInput.requestFocus()
+                /*email_textInput.error = "Email required"*/
+                Toast.makeText(activity, "Email required", Toast.LENGTH_SHORT).show()
+                /*email_textInput.requestFocus()*/
                 value = false
             }
 
