@@ -15,7 +15,7 @@ jobs:
           java-version: 1.11
 
       - name: Build Project
-      - run: ./gradlew assemble
+        run: ./gradlew assemble
 
       - name: Run Tests
       - uses: reactivecircus/android-emulator-runner@v2
