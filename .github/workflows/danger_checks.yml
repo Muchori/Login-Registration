@@ -22,8 +22,8 @@ jobs:
       - name: Danger Checks
         run: |
           gem install bundler
-          bundle exec gem source: 'https://rubygems.org/'
           bundle install
           bundle exec danger
+
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
