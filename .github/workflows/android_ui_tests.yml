@@ -10,15 +10,15 @@ jobs:
         uses: actions/checkout@v2
 
      - name: Set Up JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.11
 
     - name: Build Project
-       run: ./gradlew assemble
+      run: ./gradlew assemble
 
     - name: Run Tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-         api-level: 29
-         script: ./gradlew app:connectedCheck
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 29
+        script: ./gradlew app:connectedCheck
