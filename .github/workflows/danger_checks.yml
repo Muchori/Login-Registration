@@ -22,7 +22,7 @@ jobs:
       - name: Danger Checks
         run: |
           gem install bundler
-          bundle exec gem release --tag --host https://rubygems/
+          bundle exec gem source: 'https://rubygems.org/'
           bundle install
           bundle exec danger
         env:
