@@ -22,7 +22,7 @@ jobs:
       - name: Danger Checks
         run: |
           gem install bundler
-          gem 'activesupport', source: 'https://rubygems.org/'
+          gem source: 'https://rubygems.org/'
           bundle install
           bundle exec danger
         env:
