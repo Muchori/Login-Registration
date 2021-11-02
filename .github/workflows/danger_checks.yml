@@ -22,7 +22,8 @@ jobs:
       - name: Danger Checks
         run: |
           gem install bundler
-          gem 'https://rubygems.org/'
+          gem 'activesupport'
+          gem 'activemodel', source: 'https://rubygems.org/'
           bundle install
           bundle exec danger
         env:
