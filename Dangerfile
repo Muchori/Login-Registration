@@ -12,6 +12,6 @@ if github.pr_labels.empty?
     warn "Please add labels tp this PR."
 end
 
-if git.deletions > git.additions
+if git.deletions > git.insertions
     message "🎉 Code Cleanup!"
 end
