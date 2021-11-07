@@ -19,4 +19,4 @@ jobs:
         with:
 #          system-image: system-images;android-29;google_apis;x86
           api-level: 29
-          script: ./gradlew clean app:connectedCheck
+          script: ./gradlew app:connectedCheck
