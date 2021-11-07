@@ -17,6 +17,6 @@ jobs:
       - name: Run Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          system-image: system-images;android-30;google_apis;x86
+#          system-image: system-images;android-29;google_apis;x86
           api-level: 29
           script: ./gradlew clean app:connectedCheck
