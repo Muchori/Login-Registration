@@ -4,7 +4,7 @@ if github.pr_body.length == 0
     fail "Please prove a summary in Pull Request description."
 end
 
-if git.lines_of code > 500
+if git.lines_of_code > 500
     warn "Please consider breaking up this pull request."
 end
 
