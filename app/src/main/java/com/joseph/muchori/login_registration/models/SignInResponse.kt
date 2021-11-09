@@ -1,7 +1,7 @@
 package com.joseph.muchori.login_registration.models
 
-class SignInResponse (
+class SignInResponse(
     val status: Boolean,
-    val message:String,
+    val message: String,
     val data: User
-    )
+)

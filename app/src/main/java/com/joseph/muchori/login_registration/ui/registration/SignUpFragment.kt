@@ -1,21 +1,19 @@
 package com.joseph.muchori.login_registration.ui.registration
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.joseph.muchori.login_registration.R
 import com.joseph.muchori.login_registration.di.SignupLoginApiService
 import com.joseph.muchori.login_registration.models.SignUpRequest
 import com.joseph.muchori.login_registration.models.SignUpResponse
-import com.joseph.muchori.login_registration.ui.ProfileActivity
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 import kotlinx.android.synthetic.main.fragment_splash_screen.*
 import org.json.JSONObject
@@ -23,8 +21,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
-class SignUpFragment : Fragment(),  View.OnClickListener {
+class SignUpFragment : Fragment(), View.OnClickListener {
 
     private lateinit var firstName: TextInputEditText
     private lateinit var lastName: TextInputEditText
@@ -34,11 +31,12 @@ class SignUpFragment : Fragment(),  View.OnClickListener {
     private lateinit var navigateSignup: Button
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val mView =  inflater.inflate(R.layout.fragment_sign_up, container, false)
+        val mView = inflater.inflate(R.layout.fragment_sign_up, container, false)
 
         firstName = mView.findViewById(R.id.first_nameInput) as TextInputEditText
         lastName = mView.findViewById(R.id.last_name_textInput) as TextInputEditText
@@ -52,12 +50,10 @@ class SignUpFragment : Fragment(),  View.OnClickListener {
         return mView
     }
 
-
-
     override fun onClick(view: View?) {
-        when (view?.id){
+        when (view?.id) {
             R.id.button_signup -> {
-                if (validation()){
+                if (validation()) {
                     val json = JSONObject()
                     json.put("email", email.text.toString())
                     json.put("first_name", firstName.text.toString())
@@ -66,77 +62,77 @@ class SignUpFragment : Fragment(),  View.OnClickListener {
                     json.put("password", password.text.toString())
                 }
 
-                SignupLoginApiService.signUpLoginApiCall()?.userRegister(SignUpRequest(
-                    email.text.toString(),
-                    firstName.text.toString(),
-                    lastName.text.toString(),
-                    phoneNumber.text.toString(),
-                    password.text.toString(),
-                ))?.enqueue(object : Callback<SignUpResponse>{
+                SignupLoginApiService.signUpLoginApiCall()?.userRegister(
+                    SignUpRequest(
+                        email.text.toString(),
+                        firstName.text.toString(),
+                        lastName.text.toString(),
+                        phoneNumber.text.toString(),
+                        password.text.toString(),
+                    )
+                )?.enqueue(object : Callback<SignUpResponse> {
                     override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
                         Log.d("Response::::", response.body().toString())
-                        val loginResponse :  SignUpResponse = response.body()!!
+                        val loginResponse: SignUpResponse = response.body()!!
 
                         findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
                         /**if (loginResponse.status){
-                            findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
-                            startActivity(Intent(activity, ProfileActivity::class.java))
-                            activity?.finish()
-                        }else{
-                            Toast.makeText(activity, response.body()!!.message, Toast.LENGTH_LONG).show()
-                        }*/
+                         findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
+                         startActivity(Intent(activity, ProfileActivity::class.java))
+                         activity?.finish()
+                         }else{
+                         Toast.makeText(activity, response.body()!!.message, Toast.LENGTH_LONG).show()
+                         }*/
                     }
 
                     override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
                         TODO("Not yet implemented")
                     }
-
                 })
             }
         }
     }
     private fun validation(): Boolean {
 
-            var value = true
+        var value = true
 
-            val eMail = email_textInput.text.toString().trim()
-            val firstName = first_nameInput.text.toString().trim()
-            val lastName = last_name_textInput.text.toString().trim()
-            val phoneNumber = phoneNumber_textInput.text.toString().trim()
-            val passWord = password_textInput.text.toString().trim()
+        val eMail = email_textInput.text.toString().trim()
+        val firstName = first_nameInput.text.toString().trim()
+        val lastName = last_name_textInput.text.toString().trim()
+        val phoneNumber = phoneNumber_textInput.text.toString().trim()
+        val passWord = password_textInput.text.toString().trim()
 
-            if (eMail.isEmpty()) {
-                /*email_textInput.error = "Email required"*/
-                Toast.makeText(activity, "Email required", Toast.LENGTH_SHORT).show()
-                /*email_textInput.requestFocus()*/
-                value = false
-            }
-
-
-            if (passWord.isEmpty()) {
-                password_textInput.error = "Password required"
-                password_textInput.requestFocus()
-                value = false
-            }
-
-            if (firstName.isEmpty()) {
-                first_nameInput.error = "Firstname required"
-                first_nameInput.requestFocus()
-                value = false
-            }
-
-            if (lastName.isEmpty()) {
-                last_name_textInput.error = "Lastname required"
-                last_name_textInput.requestFocus()
-                value = false
-            }
-
-            if (phoneNumber.isEmpty()) {
-                phoneNumber_textInput.error = "Phone number required"
-                phoneNumber_textInput.requestFocus()
-                value = false
-            }
-
-            return value;
+        if (eMail.isEmpty()) {
+            /*email_textInput.error = "Email required"*/
+            Toast.makeText(activity, "Email required", Toast.LENGTH_SHORT).show()
+            /*email_textInput.requestFocus()*/
+            value = false
         }
+
+        if (passWord.isEmpty()) {
+            password_textInput.error = "Password required"
+            password_textInput.requestFocus()
+            value = false
+        }
+
+        if (firstName.isEmpty()) {
+            first_nameInput.error = "Firstname required"
+            first_nameInput.requestFocus()
+            value = false
+        }
+
+        if (lastName.isEmpty()) {
+            last_name_textInput.error = "Lastname required"
+            last_name_textInput.requestFocus()
+            value = false
+        }
+
+        if (phoneNumber.isEmpty()) {
+            phoneNumber_textInput.error = "Phone number required"
+            phoneNumber_textInput.requestFocus()
+            value = false
+        }
+
+        return value
+    }
 }

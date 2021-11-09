@@ -1,54 +1,51 @@
 package com.joseph.muchori.login_registration.di
 
 import com.google.gson.GsonBuilder
-
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.converter.gson.GsonConverterFactory
 import java.security.KeyManagementException
 import java.security.NoSuchAlgorithmException
 import java.util.concurrent.TimeUnit
-import okhttp3.logging.HttpLoggingInterceptor
-
 
 object NetworkModule {
 
     private var mClient: OkHttpClient? = null
     private var mGsonConverter: GsonConverterFactory? = null
 
-
     /**@Singleton
-    @Provides
-    fun provideHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder()
-            .readTimeout(15, TimeUnit.SECONDS)
-            .connectTimeout(15, TimeUnit.SECONDS)
-            .build()
-    }
+     @Provides
+     fun provideHttpClient(): OkHttpClient {
+     return OkHttpClient.Builder()
+     .readTimeout(15, TimeUnit.SECONDS)
+     .connectTimeout(15, TimeUnit.SECONDS)
+     .build()
+     }
 
-    @Singleton
-    @Provides
-    fun provideConverterFactory(): GsonConverterFactory {
-        return GsonConverterFactory.create()
-    }
-    @Singleton
-    @Provides
-    fun provideRetrofitInstance(
-        okHttpClient: OkHttpClient,
-        gsonConverterFactory: GsonConverterFactory
-    ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .client(okHttpClient)
-            .addConverterFactory(gsonConverterFactory)
-            .build()
-            .create(SignupLoginApi::class.java)
-    }
+     @Singleton
+     @Provides
+     fun provideConverterFactory(): GsonConverterFactory {
+     return GsonConverterFactory.create()
+     }
+     @Singleton
+     @Provides
+     fun provideRetrofitInstance(
+     okHttpClient: OkHttpClient,
+     gsonConverterFactory: GsonConverterFactory
+     ): Retrofit {
+     return Retrofit.Builder()
+     .baseUrl(BASE_URL)
+     .client(okHttpClient)
+     .addConverterFactory(gsonConverterFactory)
+     .build()
+     .create(SignupLoginApi::class.java)
+     }
 
-    @Singleton
-    @Provides
-    fun provideApiService(retrofit: Retrofit): SignupLoginApi {
-        return retrofit.create(SignupLoginApi::class.java)
-    }*/
+     @Singleton
+     @Provides
+     fun provideApiService(retrofit: Retrofit): SignupLoginApi {
+     return retrofit.create(SignupLoginApi::class.java)
+     }*/
 
     val client: OkHttpClient
         @Throws(NoSuchAlgorithmException::class, KeyManagementException::class)
@@ -61,7 +58,7 @@ object NetworkModule {
                 httpBuilder
                     .connectTimeout(120, TimeUnit.SECONDS)
                     .readTimeout(120, TimeUnit.SECONDS)
-                    .addInterceptor(interceptor)  /// show all JSON in logCat
+                    .addInterceptor(interceptor) // / show all JSON in logCat
                     .addInterceptor { chain ->
                         val original = chain.request()
 
@@ -74,11 +71,9 @@ object NetworkModule {
                         chain.proceed(request)
                     }
                 mClient = httpBuilder.build()
-
             }
             return mClient!!
         }
-
 
     val gsonConverter: GsonConverterFactory
         get() {

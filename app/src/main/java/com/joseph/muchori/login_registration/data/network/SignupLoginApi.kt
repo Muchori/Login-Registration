@@ -6,7 +6,6 @@ import com.joseph.muchori.login_registration.models.SignUpRequest
 import com.joseph.muchori.login_registration.models.SignUpResponse
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 interface SignupLoginApi {
@@ -14,11 +13,10 @@ interface SignupLoginApi {
     @POST("register")
     fun userRegister(
         @Body signUpRequest: SignUpRequest
-    ):Call<SignUpResponse>
+    ): Call<SignUpResponse>
 
     @POST("login")
     fun userLogin(
         @Body signInRequest: SignInRequest
-    ):Call<SignInResponse>
-
+    ): Call<SignInResponse>
 }

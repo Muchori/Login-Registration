@@ -1,4 +1,3 @@
 package com.joseph.muchori.login_registration.data
 
-class Repository {
-}
+class Repository

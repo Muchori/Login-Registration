@@ -1,7 +1,7 @@
 package com.joseph.muchori.login_registration.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.joseph.muchori.login_registration.R
 
 class ProfileActivity : AppCompatActivity() {
