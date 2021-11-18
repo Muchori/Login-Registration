@@ -1,3 +1,4 @@
+@file:Suppress("PackageNaming")
 package com.joseph.muchori.login_registration.ui.login
 
 import android.os.Bundle
@@ -6,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.joseph.muchori.login_registration.R
-import kotlinx.android.synthetic.main.fragment_sign_in.*
-import kotlinx.android.synthetic.main.fragment_sign_in.view.*
 
 class SignInFragment : Fragment() {
 

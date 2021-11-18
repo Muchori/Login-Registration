@@ -1,3 +1,4 @@
+@file:Suppress("PackageNaming", "UtilityClassWithPublicConstructor")
 package com.joseph.muchori.login_registration.utils
 
 class Constants {
