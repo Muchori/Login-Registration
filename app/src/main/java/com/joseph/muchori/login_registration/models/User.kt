@@ -1,4 +1,4 @@
-@file:Suppress("ConstructorParameterNaming", "PackageNaming")
+
 package com.joseph.muchori.login_registration.models
 
 data class User(
