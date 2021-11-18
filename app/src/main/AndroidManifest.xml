@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+
         android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LoginRegistration"
         android:usesCleartextTraffic="true">
+        <meta-data android:name="com.snapchat.kit.sdk.clientId" android:value="dummy-snapchat-client-id" />
         <activity
             android:name=".ui.ProfileActivity"
             android:exported="true" />
