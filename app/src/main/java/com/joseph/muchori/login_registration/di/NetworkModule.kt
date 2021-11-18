@@ -1,3 +1,6 @@
+@file:Suppress("PackageNaming", "MagicNumber")
+
+
 package com.joseph.muchori.login_registration.di
 
 import com.google.gson.GsonBuilder

@@ -1,3 +1,6 @@
+@file:Suppress("PackageNaming", "UnusedPrivateMember")
+
+
 package com.joseph.muchori.login_registration.ui.registration
 
 import android.os.Bundle
@@ -15,7 +18,6 @@ import com.joseph.muchori.login_registration.di.SignupLoginApiService
 import com.joseph.muchori.login_registration.models.SignUpRequest
 import com.joseph.muchori.login_registration.models.SignUpResponse
 import kotlinx.android.synthetic.main.fragment_sign_up.*
-import kotlinx.android.synthetic.main.fragment_splash_screen.*
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
