@@ -1,6 +1,4 @@
 @file:Suppress("PackageNaming")
-
-
 package com.joseph.muchori.login_registration.di
 
 import com.joseph.muchori.login_registration.data.network.SignupLoginApi

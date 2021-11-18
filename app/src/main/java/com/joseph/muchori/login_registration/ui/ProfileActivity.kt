@@ -1,6 +1,4 @@
 @file:Suppress("PackageNaming")
-
-
 package com.joseph.muchori.login_registration.ui
 
 import android.os.Bundle

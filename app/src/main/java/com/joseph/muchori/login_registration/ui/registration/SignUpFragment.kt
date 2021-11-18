@@ -1,6 +1,4 @@
 @file:Suppress("PackageNaming", "UnusedPrivateMember")
-
-
 package com.joseph.muchori.login_registration.ui.registration
 
 import android.os.Bundle
