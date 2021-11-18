@@ -1,5 +1,9 @@
+@file:Suppress("PackageNaming")
+
+
 package com.joseph.muchori.login_registration.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,11 +11,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.joseph.muchori.login_registration.R
-import kotlinx.android.synthetic.main.fragment_sign_in.view.*
-import kotlinx.android.synthetic.main.fragment_sign_up.view.*
 import kotlinx.android.synthetic.main.fragment_splash_screen.view.*
-import kotlinx.android.synthetic.main.fragment_splash_screen.view.button_login
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreenFragment : Fragment() {
 
     override fun onCreateView(
